@@ -5,7 +5,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    const res = await fetch("http://127.0.0.1:3001/login", {
+    const res = await fetch("http://https://your-ngrok-url.ngrok-free.app/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

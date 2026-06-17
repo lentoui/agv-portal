@@ -21,12 +21,12 @@ export default function Users() {
 );
 
 fetch(
-  `http://127.0.0.1:3001/users?role=${currentUser.role}&company_id=${currentUser.company_id}`
+  `http://https://your-ngrok-url.ngrok-free.app/users?role=${currentUser.role}&company_id=${currentUser.company_id}`
 )
   .then((res) => res.json())
   .then((data) => setUsers(data));
 
-    fetch("http://127.0.0.1:3001/companies")
+    fetch("http://https://your-ngrok-url.ngrok-free.app/companies")
       .then((res) => res.json())
       .then((data) => setCompanies(data));
 
@@ -36,7 +36,7 @@ fetch(
 
   const addUser = async () => {
 
-    await fetch("http://127.0.0.1:3001/users", {
+    await fetch("http://https://your-ngrok-url.ngrok-free.app/users", {
 
       method: "POST",
 
@@ -63,7 +63,7 @@ fetch(
   const deleteUser = async (id) => {
 
     await fetch(
-      `http://127.0.0.1:3001/users/${id}`,
+      `http://https://your-ngrok-url.ngrok-free.app/users/${id}`,
       {
         method: "DELETE"
       }

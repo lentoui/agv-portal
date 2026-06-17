@@ -6,7 +6,7 @@ export default function Flood() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch("http://127.0.0.1:3001/flood")
+      fetch("http://https://your-ngrok-url.ngrok-free.app/flood")
         .then((res) => res.json())
         .then((result) => setData(result));
     };

@@ -10,7 +10,7 @@ export default function Companies() {
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:3001/companies")
+    fetch("http://https://your-ngrok-url.ngrok-free.app/companies")
       .then((res) => res.json())
       .then((data) => setCompanies(data));
 
@@ -18,7 +18,7 @@ export default function Companies() {
 
   const addCompany = async () => {
 
-    await fetch("http://127.0.0.1:3001/companies", {
+    await fetch("http://https://your-ngrok-url.ngrok-free.app/companies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -35,7 +35,7 @@ export default function Companies() {
 
   const deleteCompany = async (id) => {
 
-    await fetch(`http://127.0.0.1:3001/companies/${id}`, {
+    await fetch(`http://https://your-ngrok-url.ngrok-free.app/companies/${id}`, {
       method: "DELETE"
     });
 

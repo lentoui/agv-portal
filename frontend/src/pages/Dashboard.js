@@ -7,7 +7,7 @@ export default function Dashboard() {
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:3001/dashboard")
+    fetch("http://https://your-ngrok-url.ngrok-free.app/dashboard")
       .then((res) => res.json())
       .then((result) => setData(result));
 
