@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function Login() {
 
   const API_URL = "https://abc123.ngrok-free.app"; // ✅ replace with YOUR ngrok URL
+  fetch(`${API_URL}/login`)
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
