@@ -3,14 +3,15 @@ import Layout from "../components/Layout";
 
 export default function Users() {
 
+  const API_URL = "https://abc123.ngrok-free.app";
   const [users, setUsers] = useState([]);
   const [companies, setCompanies] = useState([]);
-
   const [companyId, setCompanyId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("staff");
+  
 
   /* LOAD DATA */
 
@@ -20,39 +21,35 @@ export default function Users() {
   localStorage.getItem("user")
 );
 
+const currentUser = JSON.parse(localStorage.getItem("user"));
+
 fetch(
-  `http://https://your-ngrok-url.ngrok-free.app/users?role=${currentUser.role}&company_id=${currentUser.company_id}`
+  `${API_URL}/users?role=${currentUser.role}&company_id=${currentUser.company_id}`
 )
   .then((res) => res.json())
   .then((data) => setUsers(data));
 
-    fetch("http://https://your-ngrok-url.ngrok-free.app/companies")
-      .then((res) => res.json())
-      .then((data) => setCompanies(data));
+    fetch(`${API_URL}/companies`)
+  .then((res) => res.json())
+  .then((data) => setCompanies(data));
 
   }, []);
 
   /* ADD USER */
 
-  const addUser = async () => {
-
-    await fetch("http://https://your-ngrok-url.ngrok-free.app/users", {
-
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-        company_id: companyId,
-        name,
-        email,
-        password,
-        role
-      })
-
-    });
+  await fetch(`${API_URL}/users`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    company_id: companyId,
+    name,
+    email,
+    password,
+    role
+  })
+});
 
     window.location.reload();
 
@@ -60,18 +57,12 @@ fetch(
 
   /* DELETE USER */
 
-  const deleteUser = async (id) => {
-
-    await fetch(
-      `http://https://your-ngrok-url.ngrok-free.app/users/${id}`,
-      {
-        method: "DELETE"
-      }
-    );
-
-    setUsers(users.filter((u) => u.id !== id));
-
-  };
+  await fetch(
+  `${API_URL}/users/${id}`,
+  {
+    method: "DELETE"
+  }
+);
 
   return (
 
