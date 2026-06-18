@@ -2,8 +2,8 @@ import { useState } from "react";
 
 export default function Login() {
 
-  const API_URL = "https://xyz789.ngrok-free.app"; // ✅ replace with YOUR ngrok URL
-  fetch(`${API_URL}/login`)
+  // ✅ your ngrok URL
+  const API_URL = "https://xyz789.ngrok-free.app";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,7 @@ export default function Login() {
     try {
 
       const res = await fetch(`${API_URL}/login`, {
-        method: "POST",
+        method: "POST", // ✅ IMPORTANT (must be POST)
         headers: {
           "Content-Type": "application/json"
         },
@@ -22,15 +22,14 @@ export default function Login() {
 
       const data = await res.json();
 
-      console.log("LOGIN RESPONSE:", data); // ✅ debug
+      console.log("LOGIN RESPONSE:", data);
 
+      // ✅ check valid login
       if (res.ok && data.id) {
-        // ✅ save user
         localStorage.setItem("user", JSON.stringify(data));
 
         // ✅ redirect
         window.location.href = "/dashboard";
-
       } else {
         alert(data.message || "Invalid login");
       }
@@ -53,7 +52,6 @@ export default function Login() {
         </h3>
 
         {/* EMAIL */}
-
         <div className="mb-3">
           <label className="form-label">Email</label>
           <input
@@ -64,7 +62,6 @@ export default function Login() {
         </div>
 
         {/* PASSWORD */}
-
         <div className="mb-3">
           <label className="form-label">Password</label>
           <input
@@ -76,7 +73,6 @@ export default function Login() {
         </div>
 
         {/* BUTTON */}
-
         <button
           className="btn btn-success w-100"
           onClick={handleLogin}
