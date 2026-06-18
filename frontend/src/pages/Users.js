@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 
 export default function Users() {
 
-  const API_URL = "https://xyz789.ngrok-free.app"; // ✅ replace with your actual ngrok
+  const API_URL = "https://new456.ngrok-free.app"; // ✅ replace with your actual ngrok
 
   const [users, setUsers] = useState([]);
   const [companies, setCompanies] = useState([]);

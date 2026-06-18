@@ -11,8 +11,13 @@ const dashboardRoutes = require("./routes/dashboard");
 const app = express();
 
 app.use(cors({
-  origin: "*"
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"]
 }));
+
+app.options("*", cors());
+
 app.use(express.json());
 
 app.use("/login", authRoutes);
