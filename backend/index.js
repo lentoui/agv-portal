@@ -1,31 +1,16 @@
-const express = require("express");
 const cors = require("cors");
 
-const companyRoutes = require("./routes/companies");
-const authRoutes = require("./routes/auth");
-const userRoutes = require("./routes/users");
-const floodRoutes = require("./routes/flood");
-const dashboardRoutes = require("./routes/dashboard");
+app.use(cors());
 
+// ✅ handle preflight manually
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
 
-const app = express();
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
 
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type"]
-}));
-
-app.options("*", cors());
-
-app.use(express.json());
-
-app.use("/login", authRoutes);
-app.use("/users", userRoutes);
-app.use("/flood", floodRoutes);
-app.use("/companies", companyRoutes);
-app.use("/dashboard", dashboardRoutes);
-
-app.listen(3001, () => {
-  console.log("Server running on 3001 ✅");
+  next();
 });
